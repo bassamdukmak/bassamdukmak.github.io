@@ -1,0 +1,760 @@
+.store,
+.store button,
+.store input,
+.store select,
+.store textarea {
+  font-family: "Public Sans Variable", "Public Sans", sans-serif;
+}
+
+.store h1,
+.store h2,
+.store h3 {
+  font-family: "Anybody Variable", "Anybody", sans-serif;
+  font-stretch: 95%;
+  font-weight: 620;
+}
+
+.store h1,
+.store h2,
+.store h3,
+.store p,
+.store figure,
+.store fieldset {
+  margin: 0;
+}
+
+.store a,
+.store button,
+.store input,
+.store select,
+.store textarea {
+  border-radius: 0;
+}
+
+.hero {
+  background: #0d0d0d;
+  display: grid;
+  grid-template-columns: minmax(360px, 5fr) minmax(0, 7fr);
+  grid-template-rows: auto 58px;
+  min-height: calc(100svh - 5.25rem);
+}
+
+.heroCopy {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  grid-column: 1;
+  grid-row: 1;
+  justify-content: center;
+  padding: clamp(42px, 6vw, 92px) clamp(24px, 5vw, 78px);
+  position: relative;
+  z-index: 2;
+}
+
+.heroMark {
+  align-items: center;
+  display: flex;
+  gap: 18px;
+  margin-bottom: clamp(34px, 5.5vh, 72px);
+}
+
+.heroMark img {
+  height: 48px;
+  object-fit: contain;
+  width: 39px;
+}
+
+.heroMark p,
+.pricingIntro > p:first-child,
+.interestHeading > p:first-child,
+.storeClose p {
+  font-size: 0.75rem !important;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1.25 !important;
+  text-transform: uppercase;
+}
+
+.heroMark p {
+  color: #e8dfc8;
+  max-width: 28ch;
+}
+
+.hero h1 {
+  color: #e8dfc8;
+  font-size: clamp(4.4rem, 7.8vw, 8.2rem);
+  letter-spacing: -0.065em;
+  line-height: 0.82;
+  max-width: 6ch;
+  text-transform: uppercase;
+}
+
+.hero h1 span {
+  color: #c9a84c;
+  display: block;
+}
+
+.heroIntro {
+  color: #e8dfc8;
+  margin-top: 34px !important;
+  max-width: 40ch;
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 38px;
+}
+
+.heroActions a,
+.priceCard a,
+.storeClose a {
+  align-items: center;
+  border: 1px solid currentColor;
+  display: inline-flex;
+  font-size: 0.75rem;
+  font-weight: 800;
+  justify-content: center;
+  letter-spacing: 0.12em;
+  min-height: 52px;
+  padding: 15px 20px;
+  text-transform: uppercase;
+  transition: background-color 160ms ease, color 160ms ease,
+    border-color 160ms ease;
+}
+
+.heroActions a {
+  color: #e8dfc8;
+}
+
+.heroActions a:first-child,
+.priceCard a {
+  background: #c9a84c;
+  border-color: #c9a84c;
+  color: #0d0d0d;
+}
+
+.heroActions a:hover,
+.heroActions a:focus-visible,
+.priceCard a:hover,
+.priceCard a:focus-visible,
+.storeClose a:hover,
+.storeClose a:focus-visible {
+  background: #e8dfc8;
+  border-color: #e8dfc8;
+  color: #0d0d0d;
+}
+
+.previewNote {
+  color: #e8dfc8;
+  font-size: 0.75rem !important;
+  margin-top: 26px !important;
+  max-width: 44ch;
+  opacity: 0.7;
+}
+
+.heroProduct {
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+  min-width: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.viewPanel::before {
+  color: rgba(13, 13, 13, 0.08);
+  content: "HOME / 01";
+  font-family: "Anybody Variable", "Anybody", sans-serif;
+  font-size: clamp(5rem, 11vw, 11rem);
+  font-weight: 720;
+  inset-block-start: 8%;
+  inset-inline-start: 4%;
+  letter-spacing: -0.07em;
+  line-height: 0.75;
+  pointer-events: none;
+  position: absolute;
+  text-transform: uppercase;
+}
+
+.productViewer {
+  block-size: 100%;
+  border: 0;
+  display: grid;
+  grid-template-columns: minmax(360px, 5fr) minmax(0, 7fr);
+  grid-template-rows: minmax(0, 1fr) 58px;
+  min-block-size: calc(100svh - 5.25rem);
+  min-inline-size: 0;
+  padding: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.twoViews .viewControls {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.threeViews .viewControls {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.fourViews .viewControls {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.viewControls {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-row: 2;
+  position: relative;
+  z-index: 3;
+}
+
+.viewButton {
+  align-items: center;
+  background: #e8dfc8;
+  border: 0;
+  border-top: 1px solid #0d0d0d;
+  color: #0d0d0d;
+  cursor: pointer;
+  display: flex;
+  font-size: 0.75rem;
+  font-weight: 800;
+  justify-content: center;
+  letter-spacing: 0.12em;
+  min-height: 58px;
+  padding: 12px;
+  text-transform: uppercase;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+.viewButton + .viewButton {
+  border-inline-start: 1px solid #0d0d0d;
+}
+
+.viewButton[aria-pressed="true"] {
+  background: #c9a84c;
+}
+
+.viewButton:focus-visible {
+  outline: 3px solid #0d0d0d;
+  outline-offset: -5px;
+}
+
+.viewPanel {
+  background: #e8dfc8;
+  border-inline-start: 1px solid #c9a84c;
+  grid-column: 2;
+  grid-row: 1;
+  min-height: 580px;
+  overflow: hidden;
+  position: relative;
+}
+
+.viewPanel img {
+  object-fit: contain;
+  padding: clamp(34px, 5vw, 84px);
+  z-index: 1;
+}
+
+.campaignPanel img {
+  object-fit: cover;
+  padding: 0;
+}
+
+.pricingSection,
+.interestSection {
+  scroll-margin-top: 96px;
+}
+
+.pricingSection {
+  background: #e8dfc8;
+  color: #0d0d0d;
+  display: grid;
+  gap: clamp(52px, 7vw, 120px);
+  grid-template-columns: minmax(260px, 4fr) minmax(0, 8fr);
+  padding: clamp(88px, 10vw, 155px) clamp(24px, 5vw, 78px);
+}
+
+.pricingIntro > p:first-child,
+.interestHeading > p:first-child {
+  color: #9a7620;
+  margin-bottom: 24px !important;
+}
+
+.pricingIntro h2,
+.interestHeading h2,
+.storeClose h2 {
+  font-size: clamp(2.7rem, 5vw, 5.8rem);
+  letter-spacing: -0.055em;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.pricingIntro h2 {
+  max-width: 7ch;
+}
+
+.pricingIntro > p:last-child {
+  border-top: 1px solid #0d0d0d;
+  margin-top: 30px !important;
+  max-width: 39ch;
+  padding-top: 18px;
+}
+
+.priceCards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.priceCard {
+  border: 1px solid #0d0d0d;
+  display: flex;
+  flex-direction: column;
+  min-height: 440px;
+  padding: clamp(26px, 4vw, 52px);
+}
+
+.priceCard + .priceCard {
+  border-inline-start: 0;
+}
+
+.priceCard h3 {
+  font-size: clamp(2rem, 3.3vw, 4.1rem);
+  letter-spacing: -0.05em;
+  line-height: 0.92;
+  max-width: 9ch;
+  text-transform: uppercase;
+}
+
+.priceCard > p {
+  margin-top: 20px !important;
+  max-width: 34ch;
+}
+
+.price {
+  align-items: baseline;
+  border-top: 1px solid #0d0d0d;
+  display: flex;
+  gap: 14px;
+  margin-top: auto;
+  padding-top: 26px;
+}
+
+.price strong {
+  font-family: "Anybody Variable", "Anybody", sans-serif;
+  font-size: clamp(2rem, 3.1vw, 3.5rem);
+  letter-spacing: -0.04em;
+}
+
+.price span {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.priceCard a {
+  align-self: flex-start;
+  margin-top: 28px;
+}
+
+.interestSection {
+  background: #0d0d0d;
+  color: #e8dfc8;
+  display: grid;
+  gap: clamp(48px, 7vw, 120px);
+  grid-template-columns: minmax(280px, 4fr) minmax(0, 7fr);
+  padding: clamp(90px, 10vw, 160px) clamp(24px, 5vw, 78px);
+}
+
+.interestHeading {
+  align-self: start;
+}
+
+.interestHeading h2 {
+  max-width: 8ch;
+}
+
+.interestHeading > p:nth-of-type(2) {
+  margin-top: 28px !important;
+  max-width: 43ch;
+  opacity: 0.76;
+}
+
+.interestHeading > img {
+  height: auto;
+  margin-top: clamp(50px, 8vw, 110px);
+  max-width: min(100%, 310px);
+  width: 100%;
+}
+
+.interestForm {
+  border-top: 2px solid #c9a84c;
+  padding-top: 28px;
+}
+
+.formGrid {
+  display: grid;
+  gap: 22px 18px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.field > span,
+.consent > span {
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 9px;
+  text-transform: uppercase;
+}
+
+.field input,
+.field select,
+.field textarea {
+  background: #0d0d0d;
+  border: 1px solid #e8dfc8;
+  color: #ffffff;
+  font-size: 1rem;
+  min-height: 54px;
+  padding: 14px;
+  width: 100%;
+}
+
+.field textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: #e8dfc8;
+  opacity: 0.58;
+}
+
+.field input:focus-visible,
+.field select:focus-visible,
+.field textarea:focus-visible {
+  border-color: #c9a84c;
+  outline: 2px solid #c9a84c;
+  outline-offset: 2px;
+}
+
+.field input[aria-invalid="true"],
+.field select[aria-invalid="true"] {
+  border-width: 2px;
+}
+
+.field small,
+.consent small {
+  color: #ffffff;
+  font-size: 0.78rem;
+  margin-top: 7px;
+}
+
+.fullField {
+  grid-column: 1 / -1;
+}
+
+.consent {
+  align-items: start;
+  display: grid;
+  gap: 0 12px;
+  grid-template-columns: 22px 1fr;
+  margin-top: 4px;
+}
+
+.consent input {
+  accent-color: #c9a84c;
+  height: 20px;
+  margin: 1px 0 0;
+  width: 20px;
+}
+
+.consent > span {
+  letter-spacing: 0;
+  line-height: 1.55;
+  margin: 0;
+  text-transform: none;
+}
+
+.consent a {
+  border-bottom: 1px solid #e8dfc8;
+}
+
+.consent small {
+  grid-column: 2;
+}
+
+.honeypot {
+  height: 1px;
+  left: -10000px;
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+}
+
+.formFooter {
+  align-items: center;
+  border-top: 1px solid #e8dfc8;
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  margin-top: 28px;
+  padding-top: 24px;
+}
+
+.formFooter button {
+  background: #c9a84c;
+  border: 1px solid #c9a84c;
+  color: #0d0d0d;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  min-height: 54px;
+  padding: 15px 22px;
+  text-transform: uppercase;
+}
+
+.formFooter button:hover:not(:disabled),
+.formFooter button:focus-visible {
+  background: #e8dfc8;
+  border-color: #e8dfc8;
+}
+
+.formFooter button:disabled {
+  cursor: default;
+  opacity: 0.7;
+}
+
+.formFooter p {
+  font-size: 0.76rem !important;
+  max-width: 35ch;
+  opacity: 0.7;
+  text-align: end;
+}
+
+.formFeedback {
+  border-top: 1px solid #c9a84c;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.92rem;
+  gap: 5px;
+  margin-top: 22px;
+  min-height: 0;
+  padding-top: 14px;
+}
+
+.formFeedback:empty {
+  display: none;
+}
+
+.formFeedbackError {
+  border-top-color: #ffffff;
+}
+
+.leadReference {
+  color: #c9a84c;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.storeClose {
+  align-items: end;
+  background: #0d0d0d;
+  border-top: 1px solid rgba(232, 223, 200, 0.25);
+  color: #e8dfc8;
+  display: grid;
+  gap: 40px;
+  grid-template-columns: 110px 1fr auto;
+  min-height: 430px;
+  padding: clamp(82px, 10vw, 150px) clamp(24px, 5vw, 78px);
+}
+
+.storeClose > img {
+  height: auto;
+  width: 88px;
+}
+
+.storeClose h2 {
+  max-width: 8ch;
+}
+
+.storeClose a {
+  color: #e8dfc8;
+  min-width: 180px;
+}
+
+.visuallyHidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+@media (max-width: 1050px) {
+  .hero {
+    grid-template-columns: minmax(340px, 0.9fr) minmax(0, 1.1fr);
+  }
+
+  .productViewer {
+    grid-template-columns: minmax(340px, 0.9fr) minmax(0, 1.1fr);
+  }
+
+  .hero h1 {
+    font-size: clamp(4.1rem, 7.7vw, 6.4rem);
+  }
+
+  .interestSection {
+    grid-template-columns: minmax(260px, 0.7fr) minmax(0, 1.3fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  .heroCopy {
+    grid-column: 1;
+    grid-row: 1;
+    padding-block: 72px 62px;
+  }
+
+  .heroProduct {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .productViewer {
+    grid-template-columns: 1fr;
+    min-block-size: min(115vw, 760px);
+  }
+
+  .viewPanel {
+    border-inline-start: 0;
+    border-top: 1px solid #0d0d0d;
+    grid-column: 1;
+    min-height: min(100vw, 680px);
+  }
+
+  .pricingSection,
+  .interestSection {
+    grid-template-columns: 1fr;
+  }
+
+  .interestHeading > img {
+    margin-top: 44px;
+    max-width: 270px;
+  }
+
+  .storeClose {
+    align-items: start;
+    grid-template-columns: 90px 1fr;
+  }
+
+  .storeClose a {
+    grid-column: 2;
+    justify-self: start;
+  }
+}
+
+@media (max-width: 700px) {
+  .heroCopy {
+    padding: 56px 20px 42px;
+  }
+
+  .heroMark {
+    margin-bottom: 36px;
+  }
+
+  .hero h1 {
+    font-size: clamp(4.15rem, 20vw, 5.9rem);
+  }
+
+  .heroIntro {
+    font-size: 1rem !important;
+  }
+
+  .heroActions {
+    align-items: stretch;
+    flex-direction: column;
+    margin-top: 28px;
+    width: 100%;
+  }
+
+  .heroActions a {
+    width: 100%;
+  }
+
+  .productViewer {
+    min-block-size: 128vw;
+  }
+
+  .viewPanel {
+    min-height: 110vw;
+  }
+
+  .viewPanel img {
+    padding: 22px 18px 34px;
+  }
+
+  .pricingSection,
+  .interestSection,
+  .storeClose {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .priceCards,
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .priceCard {
+    min-height: 390px;
+  }
+
+  .priceCard + .priceCard {
+    border-inline-start: 1px solid #0d0d0d;
+    border-top: 0;
+  }
+
+  .fullField {
+    grid-column: auto;
+  }
+
+  .formFooter {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .formFooter button {
+    width: 100%;
+  }
+
+  .formFooter p {
+    text-align: start;
+  }
+
+  .storeClose {
+    gap: 24px 18px;
+    grid-template-columns: 70px 1fr;
+    min-height: 390px;
+  }
+
+  .storeClose > img {
+    width: 62px;
+  }
+}

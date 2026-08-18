@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-26T21:00:00Z",
+  "title": "Design System: Phoenix United FC - The Route Room",
+  "extensions": {
+    "colorMeta": {
+      "phoenix-gold": {
+        "role": "primary",
+        "displayName": "Phoenix Gold",
+        "canonical": "#CBA84D",
+        "tonalRamp": ["#9D7E2C", "#CBA84D", "#E0C36F"]
+      },
+      "midnight-navy": {
+        "role": "secondary",
+        "displayName": "Midnight Navy",
+        "canonical": "#0B1A29",
+        "tonalRamp": ["#07111B", "#0B1A29", "#10283C"]
+      },
+      "warm-bone": {
+        "role": "neutral",
+        "displayName": "Warm Bone",
+        "canonical": "#EEE8D8",
+        "tonalRamp": ["#E2D8BE", "#EEE8D8", "#F6F2E8"]
+      },
+      "tunnel-black": {
+        "role": "neutral",
+        "displayName": "Tunnel Black",
+        "canonical": "#090A09",
+        "tonalRamp": ["#050505", "#090A09", "#11120F"]
+      },
+      "error-red": {
+        "role": "tertiary",
+        "displayName": "Recovery Red",
+        "canonical": "#C84B3A",
+        "tonalRamp": ["#9C3528", "#C84B3A", "#FFC8BD"]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Anybody Variable",
+        "purpose": "Compressed only for the hero, route reveal, belief peak, and closing statement."
+      },
+      "body": {
+        "displayName": "Public Sans Variable",
+        "purpose": "Programme explanation, wayfinding, and form guidance."
+      }
+    },
+    "motion": [
+      {
+        "name": "route-draw",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "A single authored route and tunnel-image reveal."
+      }
+    ],
+    "breakpoints": [
+      { "name": "mobile", "value": "720px" },
+      { "name": "tablet", "value": "980px" },
+      { "name": "wide", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Evaluation Button",
+      "kind": "button",
+      "description": "The gold action that opens the working qualification form.",
+      "html": "<button class=\"button button-primary\">REQUEST A PLAYER EVALUATION</button>",
+      "css": ".button-primary{background:#CBA84D;color:#090A09;border:1px solid #CBA84D;border-radius:0;padding:17px 22px;font:760 .72rem/1.2 'Public Sans Variable',sans-serif;letter-spacing:.15em;text-transform:uppercase}"
+    },
+    {
+      "name": "Route Stop",
+      "kind": "custom",
+      "description": "A connected city, club, and pathway function on the Dubai to Europe route.",
+      "html": "<article class=\"route-stop\"><span>DXB 01</span><h3>DUBAI</h3><p>PHOENIX UNITED</p></article>",
+      "css": ".route-stop{position:relative;border-top:1px solid rgba(203,168,77,.32);padding:24px}.route-stop>span{color:#E0C36F;letter-spacing:.15em}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Route Room",
+    "overview": "A football club tunnel becomes an international departures board. One gold line begins in Dubai and connects the player to Manchester, the Algarve, and a serious next decision.",
+    "keyCharacteristics": [
+      "Dubai is the visible foundation",
+      "One connected international route",
+      "Documentary photography crossing structural grids",
+      "Variable-width athletic typography",
+      "Dense, useful wayfinding instead of empty cards",
+      "Distinct cinematic, editorial, ledger, and application chapters",
+      "Gold reserved for active routes, decisions, and primary actions"
+    ],
+    "rules": [
+      {
+        "name": "The Route Rule",
+        "body": "Gold connects places, decisions, or actions and is never scattered as decoration.",
+        "section": "colors"
+      },
+      {
+        "name": "The Variable Voice Rule",
+        "body": "Font width changes establish hierarchy instead of making every line uniformly huge.",
+        "section": "typography"
+      }
+    ],
+    "dos": [
+      "Start the story in Dubai and show Manchester and Algarve in sequence.",
+      "Name who players learn from.",
+      "Preserve the pitch, the ball, faces, and real football context.",
+      "Compose mobile as identity, promise, human image, primary action, then route."
+    ],
+    "donts": [
+      "Do not use broad empty cream slabs or generic comparison tables.",
+      "Do not build the page from equal cards.",
+      "Do not use the same compressed headline treatment in every section.",
+      "Do not use gold for ordinary labels, links, or rules.",
+      "Do not use transformed identity assets or invented outcomes."
+    ]
+  }
+}
