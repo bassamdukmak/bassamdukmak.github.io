@@ -21,7 +21,7 @@ const HEADER_END = '<!-- OIA:SHARED-HEADER:END -->';
 const FOOTER_START = '<!-- OIA:SHARED-FOOTER:START -->';
 const FOOTER_END = '<!-- OIA:SHARED-FOOTER:END -->';
 const APPROVED_CONTENT_REPLACEMENTS = new Set(['newsletter/index.html', 'student-life/index.html', 'uniform/index.html']);
-const STUDENT_HANDBOOK_ROUTE = '/student-handbook/';
+const STUDENT_HANDBOOK_URL = 'https://docs.google.com/document/d/15dHlxA2hhMXcv2jAHCDiNBvPh8Phu6l7As2-cP-wN7U/view';
 const SUPPLY_LIST_ROUTE = '/school-supply-list/';
 const APPROVED_OIA_LINKS = new Set(['https://oiacademy.org/?wpforms_form_preview=243663']);
 const sharedPaths = {
@@ -326,6 +326,7 @@ function run() {
   check('Shared header has the exact six-link navigation', validateNavigation(header));
   check('Shared shell has no hamburger control', !/(?:hamburger|menu[-_ ]toggle|mobile_menu_bar|aria-label\s*=\s*["'](?:open|toggle)\s+(?:the\s+)?menu)/i.test(header));
   check('Shared sources own the header/footer markers', header.includes(HEADER_START) && header.includes(HEADER_END) && footer.includes(FOOTER_START) && footer.includes(FOOTER_END));
+  check('Shared footer links all four social platforms', ['Facebook', 'Instagram', 'LinkedIn', 'YouTube'].every((platform) => footer.includes(`>${platform}<`)));
   check('Build script consumes both shared partials', build.includes(sharedPaths.header) && build.includes(sharedPaths.footer) && /SHARED-HEADER/.test(build) && /SHARED-FOOTER/.test(build));
 
   const requiredTokens = ['#0F4F4A', '#51BFCE', '#9AC84E', '#F5F0EB', '#FFFFFF'];
@@ -418,7 +419,8 @@ function run() {
     'Newsletter route is a 2026–2027 school news and alerts board',
     /class=["'][^"']*oia-news-board[^"']*["']/.test(newsletterHtml)
       && /School News &amp; Alerts/.test(newsletterHtml)
-      && /2026–2027 School Year/.test(newsletterHtml),
+      && /2026–2027 School Year/.test(newsletterHtml)
+      && occurrences(newsletterHtml, 'https://www.canva.com/design/') === 3,
   );
   check(
     'Newsletter route contains no signup, search, comments, or forms',
@@ -427,8 +429,8 @@ function run() {
 
   const studentLifeHtml = read('student-life/index.html');
   check(
-    'Student Life links the local handbook page',
-    occurrences(studentLifeHtml, STUDENT_HANDBOOK_ROUTE) === 2
+    'Student Life links the supplied handbook document',
+    occurrences(studentLifeHtml, STUDENT_HANDBOOK_URL) === 2
       && !/handbook will appear here/i.test(studentLifeHtml),
   );
   check(
@@ -441,7 +443,7 @@ function run() {
   const supplyListHtml = read('school-supply-list/index.html');
   check('Local handbook contains the supplied school policies', /INTRODUCTORY STATEMENT/.test(handbookHtml) && /TECHNOLOGY, DIGITAL SAFETY, AND ARTIFICIAL INTELLIGENCE/.test(handbookHtml) && /HEALTH AND SAFETY/.test(handbookHtml));
   check('Local supply list contains the current grade-group supplies', /2026–2027 School Supply List/.test(supplyListHtml) && /All Students/.test(supplyListHtml) && /Grades 1–5/.test(supplyListHtml));
-  check('Rendered pages contain no Google Docs links', !redesignPages.some((relative) => /docs\.google\.com\/document/i.test(read(relative))));
+  check('Only Student Life links Google Docs', !redesignPages.some((relative) => relative !== 'student-life/index.html' && /docs\.google\.com\/document/i.test(read(relative))));
   const uniformHtml = read('uniform/index.html');
   check(
     'Uniform page displays only the supplied visual guide',
