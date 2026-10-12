@@ -1,1 +1,10 @@
-{"name":"ohio-ihsan-academy-demo","private":true,"scripts":{"build":"true"}}
+{
+  "name": "ohio-ihsan-academy-demo",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build-redesign.mjs",
+    "verify": "node scripts/verify-redesign.mjs && node scripts/check-family-updates.mjs && node scripts/check-content-editor.mjs",
+    "edit": "node scripts/edit-content.mjs",
+    "package:siteground": "node scripts/build-siteground-package.mjs"
+  }
+}

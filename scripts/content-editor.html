@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OIA — Website updates</title>
+  <style nonce="__EDITOR_NONCE__">
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #f5f0eb; color: #132522; font: 16px/1.5 system-ui, sans-serif; }
+    main { max-width: 960px; padding: 32px 22px 80px; margin: auto; }
+    h1, h2 { color: #0f4f4a; line-height: 1.2; } h1 { font: 36px/1.2 Georgia, serif; margin: 10px 0; }
+    .badge { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #24675e; }
+    .intro { max-width: 700px; color: #53635f; } a { color: #0f4f4a; }
+    section { margin-top: 30px; padding: 24px; background: white; border: 1px solid #d4dfd9; border-radius: 12px; }
+    fieldset { border: 0; padding: 0; margin: 0; } h2 { font-size: 23px; margin: 0 0 10px; }
+    .help { color: #53635f; font-size: 14px; margin: 0 0 16px; }
+    label { display: block; font-weight: 650; margin-top: 16px; }
+    input, textarea { display: block; width: 100%; margin-top: 6px; border: 1px solid #9aaca5; border-radius: 6px; padding: 10px; color: #132522; background: white; font: inherit; }
+    textarea { resize: vertical; min-height: 95px; } input:focus, textarea:focus, button:focus-visible, a:focus-visible, summary:focus-visible { outline: 3px solid #51bfce; outline-offset: 3px; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; }
+    details { margin: 16px 0; padding: 16px; border: 1px solid #d4dfd9; border-radius: 8px; }
+    summary { cursor: pointer; font-weight: 700; color: #0f4f4a; overflow-wrap: anywhere; }
+    button { cursor: pointer; border: 1px solid #0f4f4a; border-radius: 6px; background: white; color: #0f4f4a; padding: 10px 15px; font: 650 15px/1.3 system-ui, sans-serif; }
+    button:disabled { cursor: wait; opacity: .55; } .remove { color: #8b2929; border-color: #cfb3b3; margin-top: 20px; }
+    .toolbar { position: sticky; bottom: 0; padding: 16px; background: #f5f0eb; border: 1px solid #d4dfd9; border-radius: 10px; margin-top: 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
+    .primary { color: white; background: #0f4f4a; } #status { margin: 0; flex: 1 1 250px; font-size: 14px; } #status[data-error="true"] { color: #8b2929; }
+    .empty { color: #53635f; font-style: italic; } @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } section { padding: 18px; } h1 { font-size: 30px; } }
+  </style>
+</head>
+<body>
+<main>
+  <span class="badge">Ohio Ihsan Academy · local editor</span>
+  <h1>Website updates</h1>
+  <p class="intro">Add a family newsletter or update school activities without changing the website design. Saving updates the copy on this computer. A website maintainer publishes the reviewed files separately.</p>
+  <form id="editor">
+    <fieldset id="fields" disabled>
+      <section aria-labelledby="newsletter-heading">
+        <h2 id="newsletter-heading">Family newsletters</h2>
+        <p class="help">Add the newsletter’s date, title and public link. The website shows the newest dates first. Remove an old entry to take it off the website; its linked document stays unchanged.</p>
+        <div id="newsletters"></div>
+        <button type="button" id="add-newsletter">Add newsletter</button>
+      </section>
+      <section aria-labelledby="events-heading">
+        <h2 id="events-heading">School activities</h2>
+        <p class="help">Events appear during months overlapping these dates. Next month’s activities wait until next month; past months disappear automatically. Keep past entries for your records, or remove them.</p>
+        <div id="events"></div>
+        <button type="button" id="add-event">Add activity</button>
+      </section>
+      <section aria-labelledby="links-heading">
+        <h2 id="links-heading">Activity heading &amp; family links</h2>
+        <p class="help">Use public, secure links beginning with https://. The event calendar remains a live Google document; edit its schedule in Google Docs.</p>
+        <div id="settings"></div>
+      </section>
+    </fieldset>
+    <div class="toolbar">
+      <button class="primary" id="save" type="submit" disabled>Save updates</button>
+      <a href="/" target="_blank" rel="noopener" id="preview">Open saved website preview ↗</a>
+      <p id="status" role="status" aria-live="polite">Loading website content…</p>
+    </div>
+  </form>
+</main>
+<script nonce="__EDITOR_NONCE__">
+  const form = document.getElementById("editor");
+  const fields = document.getElementById("fields");
+  const saveButton = document.getElementById("save");
+  const status = document.getElementById("status");
+  let content, token, dirty = false;
+
+  function message(text, error = false) {
+    status.textContent = text;
+    status.dataset.error = String(error);
+  }
+  function changed() { dirty = true; message("Unsaved changes. Choose Save updates when ready."); }
+  function field(parent, item, key, label, type = "text", required = false) {
+    const wrapper = document.createElement("label");
+    wrapper.textContent = label;
+    const input = document.createElement(type === "lines" || type === "textarea" ? "textarea" : "input");
+    if (input.tagName === "INPUT") input.type = type;
+    input.dataset.field = key;
+    input.value = Array.isArray(item[key]) ? item[key].join("\n") : item[key] || "";
+    input.required = required;
+    if (type === "lines") input.dataset.lines = "true";
+    if (type === "url") input.placeholder = "https://…";
+    wrapper.append(input); parent.append(wrapper);
+  }
+  function readFields(container) {
+    const value = {};
+    for (const input of container.querySelectorAll("[data-field]")) {
+      value[input.dataset.field] = input.dataset.lines ? input.value.split(/\r?\n/).map(line => line.trim()).filter(Boolean) : input.value.trim();
+    }
+    return value;
+  }
+  function readForm() {
+    for (const kind of ["newsletters", "events"]) {
+      content[kind] = [...document.getElementById(kind).children].filter(node => node.matches("details")).map((node, index) => ({ ...content[kind][index], ...readFields(node) }));
+    }
+    Object.assign(content, readFields(document.getElementById("settings")));
+  }
+  function itemCard(kind, item, index) {
+    const card = document.createElement("details");
+    card.open = !item.title;
+    const heading = document.createElement("summary");
+    heading.textContent = item.title || (kind === "newsletters" ? "New newsletter" : "New activity");
+    card.append(heading);
+    const remove = document.createElement("button");
+    remove.type = "button"; remove.className = "remove";
+    remove.textContent = kind === "newsletters" ? "Remove newsletter" : "Remove activity";
+    remove.addEventListener("click", () => { readForm(); content[kind].splice(index, 1); render(); changed(); });
+    if (kind === "newsletters") {
+      field(card, item, "title", "Newsletter title", "text", true);
+      field(card, item, "date", "Newsletter date", "date", true);
+      field(card, item, "url", "Newsletter link", "url", true);
+      field(card, item, "description", "Short description");
+    } else {
+      field(card, item, "title", "Activity title", "text", true);
+      field(card, item, "subtitle", "Subtitle");
+      const dates = document.createElement("div"); dates.className = "grid"; card.append(dates);
+      field(dates, item, "startDate", "Activity starts", "date", true);
+      field(dates, item, "endDate", "Activity ends (including this day)", "date", true);
+      field(card, item, "summary", "Short introduction", "textarea", true);
+      field(card, item, "details", "How it works — one paragraph per line", "lines", true);
+      field(card, item, "submissionUrl", "Submission or signup link (optional)", "url");
+      field(card, item, "submissionInstructions", "How to submit or sign up (optional)", "textarea");
+      field(card, item, "scoreboardUrl", "Published scoreboard embed link (optional)", "url");
+      field(card, item, "notes", "Important notes — one note per line", "lines");
+      field(card, item, "adultReward", "If adults win (optional)");
+      field(card, item, "studentReward", "If students win (optional)");
+      field(card, item, "announcement", "Results or other announcement (optional)");
+    }
+    card.append(remove); return card;
+  }
+  function render() {
+    for (const kind of ["newsletters", "events"]) {
+      const list = document.getElementById(kind);
+      list.replaceChildren(...content[kind].map((item, index) => itemCard(kind, item, index)));
+      if (!content[kind].length) { const empty = document.createElement("p"); empty.className = "empty"; empty.textContent = kind === "newsletters" ? "No newsletters listed yet." : "No activities listed yet."; list.append(empty); }
+    }
+    const settings = document.getElementById("settings"); settings.replaceChildren();
+    field(settings, content, "eventsHeading", "Homepage activity heading", "text", true);
+    field(settings, content, "eventCalendarUrl", "Event calendar link", "url", true);
+    field(settings, content, "volunteerUrl", "Jumu’ah volunteer signup link", "url", true);
+  }
+  document.getElementById("add-newsletter").addEventListener("click", () => {
+    readForm(); content.newsletters.unshift({ title: "", date: "", url: "", description: "OIA Connection — open newsletter." }); render(); changed(); document.querySelector("#newsletters input").focus();
+  });
+  document.getElementById("add-event").addEventListener("click", () => {
+    readForm(); content.events.push({ id: `event-${crypto.randomUUID().slice(0, 8)}`, title: "", subtitle: "", startDate: "", endDate: "", summary: "", details: [], submissionUrl: "", submissionInstructions: "", scoreboardUrl: "", notes: [], adultReward: "", studentReward: "", announcement: "" }); render(); changed(); document.querySelector("#events details:last-of-type input").focus();
+  });
+  form.addEventListener("input", changed);
+  form.addEventListener("invalid", event => { const card = event.target.closest("details"); if (card) card.open = true; }, true);
+  window.addEventListener("beforeunload", event => { if (dirty) { event.preventDefault(); event.returnValue = ""; } });
+  form.addEventListener("submit", async event => {
+    event.preventDefault(); readForm(); fields.disabled = true; saveButton.disabled = true; message("Saving and rebuilding the local preview…");
+    try {
+      const response = await fetch("/api/content", { method: "POST", headers: { "Content-Type": "application/json", "X-OIA-Editor-Token": token }, body: JSON.stringify(content) });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error);
+      content = result.content; render(); dirty = false; message("Saved locally. Open the saved website preview, or refresh its tab, to review your update.");
+    } catch (error) { message(error.message || "The update could not be saved. Please try again.", true); }
+    finally { fields.disabled = false; saveButton.disabled = false; }
+  });
+  async function load() {
+    try {
+      const response = await fetch("/api/content"); const result = await response.json();
+      if (!response.ok) throw new Error(result.error);
+      content = result.content; token = result.csrfToken; render(); fields.disabled = false; saveButton.disabled = false; message("Ready. Changes stay on this computer until a maintainer publishes them.");
+    } catch (error) { message(error.message || "Content could not be loaded. Restart the local editor or contact your website maintainer.", true); }
+  }
+  load();
+</script>
+</body>
+</html>
