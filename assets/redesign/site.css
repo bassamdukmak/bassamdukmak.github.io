@@ -697,6 +697,58 @@ body.oia-redesign .oia-home-hero h1 { max-width: 9ch; margin: 0 !important; colo
 .oia-hero-cta { display: inline-flex; width: fit-content; max-width: 100%; min-height: 52px; align-items: center; margin-top: 0.4rem; padding: 13px 24px; color: var(--oia-green) !important; background: var(--oia-lime); border: 1px solid var(--oia-lime); border-radius: 4px; font-size: 14px; font-weight: 700; text-decoration: none; }
 .oia-hero-cta::after { margin-left: 11px; content: "→"; }
 .oia-hero-cta:hover { color: var(--oia-green) !important; background: var(--oia-lime); border-color: var(--oia-lime); }
+.oia-life-link { display: grid; gap: 3px; width: fit-content; margin-top: 1.3rem; color: var(--oia-white) !important; text-decoration: none; }
+.oia-life-link strong { font-family: var(--oia-display); font-size: 1.35rem; }
+.oia-life-link > span { color: #e7f2ee; font-size: 0.82rem; text-decoration: underline; text-underline-offset: 5px; }
+.oia-life-link:hover > span { text-decoration-thickness: 2px; }
+.oia-activities-page { width: min(100% - 48px, 70rem); margin: 0 auto; padding: 60px 0 80px; }
+.oia-activities-heading { margin-bottom: 38px; text-align: center; }
+.oia-activities-heading .oia-eyebrow { color: var(--oia-green) !important; }
+body.oia-redesign .oia-activities-heading h1 { font-size: clamp(2.7rem, 6vw, 4.4rem) !important; margin-bottom: 12px; }
+.oia-activity-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: 24px; max-width: 62rem; margin: 0 auto; }
+.oia-community-event { padding: 32px; background: white; border: 1px solid var(--oia-line); border-radius: 12px; text-align: center; }
+.oia-community-event:only-child { width: min(100%, 38rem); justify-self: center; }
+.oia-community-event[hidden], .oia-events-empty[hidden] { display: none; }
+.oia-activity-icon { width: 64px; height: 64px; margin-bottom: 22px; color: var(--oia-green); }
+body.oia-redesign .oia-community-event h2 { margin: 14px 0; font-size: clamp(1.7rem, 3vw, 2.2rem) !important; line-height: 1.25; }
+.oia-event-date { margin: 0 !important; font-size: 0.8rem; font-weight: 700; }
+.oia-event-subtitle { margin-bottom: 14px !important; font-family: var(--oia-display); font-size: 1.2rem; font-style: italic; }
+.oia-activity-dialog { width: min(100% - 32px, 62rem); max-height: calc(100% - 40px); padding: 32px; border: 0; border-radius: 12px; color: var(--oia-ink); background: white; text-align: left; }
+.oia-activity-dialog::backdrop { background: rgba(7, 35, 31, 0.65); }
+.oia-activity-close { position: sticky; top: 0; float: right; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 50%; background: #e6f1e7; color: var(--oia-green); font-size: 28px; cursor: pointer; }
+.oia-activity-dialog > header { padding-right: 50px; margin-bottom: 28px; }
+.oia-activity-sections { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+.oia-activity-sections > section { min-width: 0; padding-top: 18px; border-top: 1px solid var(--oia-line); }
+.oia-activity-sections ul { padding-left: 20px; margin: 0; }
+.oia-activity-sections li { margin-bottom: 10px; }
+body.oia-redesign .oia-activity-dialog h3 { margin: 0 0 14px; font-size: 1.35rem !important; }
+.oia-activity-score { margin-top: 30px; padding-top: 24px; border-top: 1px solid var(--oia-line); }
+.oia-events-empty { text-align: center; }
+.oia-calendar-options { display: grid; gap: 12px; margin-top: auto; }
+.oia-calendar-options a { color: var(--oia-green); font-weight: 700; font-size: 0.85rem; text-underline-offset: 4px; }
+.oia-calendar-live { margin: 0 0 24px; }
+.oia-calendar-live a { color: var(--oia-green); font-weight: 700; text-underline-offset: 4px; }
+.oia-scoreboard { overflow: auto; max-width: 100%; margin: 20px 0; background: white; }
+.oia-scoreboard iframe { display: block; width: 100%; min-width: 704px; height: 436px; border: 0; }
+.oia-scoreboard-hint { display: none; font-size: 0.8rem; }
+.oia-scoreboard:focus-visible { outline: 3px solid var(--oia-green); outline-offset: 4px; }
+.oia-event-action { display: inline-flex; align-items: center; min-height: 48px; max-width: 100%; margin: 12px 0 20px; padding: 12px 18px; background: var(--oia-lime); color: var(--oia-green) !important; border-radius: 4px; font-weight: 700; text-decoration: none; border: 0; font-family: inherit; font-size: 0.95rem; cursor: pointer; }
+.oia-event-action:hover { background: #abd65c; }
+body.oia-redesign #main-content > .oia-family-page { display: block; width: min(100% - 48px, 56rem) !important; padding: clamp(30px, 6vw, 70px) 0 !important; margin: 0 auto !important; background: transparent; border: 0; box-shadow: none; }
+body.oia-redesign .oia-family-page h1 { font-size: clamp(2.5rem, 6vw, 4rem) !important; }
+body.oia-redesign .oia-family-page h2 { margin-top: 35px; font-size: 1.65rem !important; }
+.oia-family-intro { font-size: 1.25rem; }
+.oia-family-page p { max-width: 65ch; }
+.oia-order-date { padding: 18px 22px; background: #e6f1e7; border-radius: 8px; font-weight: 700; }
+.oia-order-date:empty { display: none; }
+.oia-family-back { margin-top: 38px !important; }
+.oia-activities-page :is(a, button):focus-visible, .oia-family-page a:focus-visible { outline: 3px solid var(--oia-green); outline-offset: 5px; }
+@media (max-width: 760px) {
+  .oia-activities-page { width: calc(100% - 30px); padding-top: 38px; }
+  .oia-activity-dialog { padding: 22px; }
+  .oia-activity-sections { grid-template-columns: 1fr; }
+  .oia-scoreboard-hint { display: block; }
+}
 .oia-home-hero > img { display: block; width: 100%; height: 100% !important; min-width: 0; object-fit: cover; object-position: 50% 44%; }
 
 body[data-oia-template="home"] #main-content .et_pb_section_0 { display: none !important; }

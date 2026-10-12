@@ -1,0 +1,53 @@
+{
+  "eventsHeading": "Life at OIA",
+  "eventCalendarUrl": "https://docs.google.com/document/d/1iZYN2hKL4oY3Tf_pqSfcZHOyagnpOc9rmVmAuCIyZWk/edit?usp=sharing",
+  "volunteerUrl": "https://www.signupgenius.com/go/10C054BAEAA2BA2F5C70-65791301-jumua#/",
+  "newsletters": [
+    {
+      "date": "2026-08-23",
+      "title": "August 23, 2026",
+      "description": "OIA Connection — open newsletter.",
+      "url": "https://www.canva.com/design/DAHS3oUcBlo/DPWrV8jo8gKsbO-i4ZMTmA/view?utm_content=DAHS3oUcBlo&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h82d03969aa"
+    },
+    {
+      "date": "2026-08-15",
+      "title": "August 15, 2026",
+      "description": "OIA Connection — open newsletter.",
+      "url": "https://www.canva.com/design/DAHSMPqBhKY/H4tJrGgWj_bPhTkukNrMDg/view?utm_content=DAHSMPqBhKY&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hd0b3fcb57b"
+    },
+    {
+      "date": "2026-07-22",
+      "title": "July 22, 2026",
+      "description": "OIA Connection — open newsletter.",
+      "url": "https://www.canva.com/design/DAHPsSkGw-s/XPA3ErUHgQC6P-p7r1"
+    }
+  ],
+  "events": [
+    {
+      "id": "iqra-reading-challenge",
+      "title": "OIA Iqra’ Reading Challenge",
+      "subtitle": "Read, Reflect, Grow!",
+      "startDate": "2026-10-02",
+      "endDate": "2026-10-29",
+      "summary": "A month of reading together: students take on parents, teachers, staff, and board members in a friendly school-wide challenge.",
+      "details": [
+        "The Qur’anic verse “Iqra’” (Read) marks the beginning of Quranic revelation and emphasizes the importance of seeking knowledge. At OIA, we cultivate lifelong learners who read, reflect, and grow.",
+        "Team Adults: teachers, staff, parents and guardians, and board members. Team Students: all OIA students.",
+        "Every minute of reading earns 1 point. A book recommendation video earns 10 bonus points. Total reading minutes plus bonus points determine the winner.",
+        "For a book recommendation, make a 1–2 minute video with the book’s title, author, suggested age range, and one reason you recommend it. Selected videos will be shared on the school’s social media pages."
+      ],
+      "submissionUrl": "https://forms.gle/98y9pFBdzcMXa4fB8",
+      "scoreboardUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTB2DUyLl07druxs6yHJJ33utX7PSLQTOS7aRHE-FjhPqmu767wDMtdJMFtNIRnX9IweQ43ppLR6hq9/pubchart?oid=1335978078&format=interactive",
+      "notes": [
+        "Minutes can reflect independent or shared reading.",
+        "Reading may include Quran, fiction, nonfiction, and any age-appropriate texts.",
+        "Reading can be in any language — all languages count.",
+        "Honesty matters: this challenge is about building reading habits, not perfection."
+      ],
+      "adultReward": "A coffee and sweets social hour at OIA.",
+      "studentReward": "A pizza and ice cream party at the end of the month.",
+      "announcement": "The winning team will be announced during the October 30 school-wide Sakinah Circle.",
+      "submissionInstructions": "Submit reading minutes and recommendation videos daily or weekly. All minutes for each week should be submitted by Sunday night of that week."
+    }
+  ]
+}

@@ -11,16 +11,34 @@ import { dirname, extname, posix, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const baseline = resolve(root, '..', 'Original Non-Redesign');
+const baselineCandidates = [
+  process.env.OIA_BASELINE_DIR,
+  resolve(root, '..', 'Original Non-Redesign'),
+  resolve(root, '..', '..', 'Claude', 'Projects', 'Stratum', 'Original Non-Redesign'),
+].filter(Boolean);
+const baseline = baselineCandidates.find(existsSync) || baselineCandidates[0];
 const EXPECTED_BASELINE_PAGE_COUNT = 35;
-const EXPECTED_REDESIGN_PAGE_COUNT = 38;
+const EXPECTED_REDESIGN_PAGE_COUNT = 40;
 const EXPECTED_BASELINE_FILES = 490;
 const EXPECTED_BASELINE_SHA256 = '5a936e96de3d88c1fe2d580f9468388604de8c612949f60f4a7eb7d61a8cd39b';
 const HEADER_START = '<!-- OIA:SHARED-HEADER:START -->';
 const HEADER_END = '<!-- OIA:SHARED-HEADER:END -->';
 const FOOTER_START = '<!-- OIA:SHARED-FOOTER:START -->';
 const FOOTER_END = '<!-- OIA:SHARED-FOOTER:END -->';
-const APPROVED_CONTENT_REPLACEMENTS = new Set(['newsletter/index.html', 'student-life/index.html', 'uniform/index.html']);
+const APPROVED_CONTENT_REPLACEMENTS = new Set([
+  'index.html',
+  '2026-2027-calendar/index.html',
+  'jumah-bites-2/index.html',
+  '4th-grade-form/index.html',
+  'board/index.html',
+  'faq/index.html',
+  'newsletter/index.html',
+  'ourteam/index.html',
+  'registration/index.html',
+  'student-life/index.html',
+  'uniform/index.html',
+  'welcome/index.html',
+]);
 const STUDENT_HANDBOOK_URL = 'https://docs.google.com/document/d/15dHlxA2hhMXcv2jAHCDiNBvPh8Phu6l7As2-cP-wN7U/view';
 const SUPPLY_LIST_ROUTE = '/school-supply-list/';
 const APPROVED_OIA_LINKS = new Set(['https://oiacademy.org/?wpforms_form_preview=243663']);
@@ -30,6 +48,7 @@ const sharedPaths = {
   siteCss: 'assets/redesign/site.css',
   templatesCss: 'assets/redesign/page-templates.css',
   siteJs: 'assets/redesign/site.js',
+  familyDates: 'assets/redesign/family-dates.mjs',
   safetyJs: 'assets/redesign/demo-safety.js',
   uniformGuide: 'assets/redesign/images/student-uniform-guide-hd.png',
   build: 'scripts/build-redesign.mjs',
@@ -39,6 +58,7 @@ const sharedRefs = [
   '/assets/redesign/page-templates.css',
   '/assets/redesign/site.js',
   '/assets/redesign/demo-safety.js',
+  '/assets/redesign/family-dates.mjs',
 ];
 const navigation = [
   ['Our School', '/welcome/'],
@@ -300,7 +320,7 @@ function run() {
   if (!existsSync(baseline) || !existsSync(root)) throw new Error('Required project folder is missing.');
 
   const baselineFiles = walkFiles(baseline);
-  const redesignFiles = walkFiles(root);
+  const redesignFiles = walkFiles(root).filter((file) => !/^(?:dist|graphify-out|siteground)\//.test(file));
   const baselinePages = baselineFiles.filter((file) => posix.basename(file) === 'index.html');
   const redesignPages = redesignFiles.filter((file) => posix.basename(file) === 'index.html');
   check('Baseline inventory is unchanged', baselineFiles.length === EXPECTED_BASELINE_FILES, `${baselineFiles.length}/${EXPECTED_BASELINE_FILES} files`);
@@ -340,10 +360,10 @@ function run() {
   check('Local visual form-step navigation is implemented', /wpforms-page-next/.test(siteJs) && /wpforms-page-prev/.test(siteJs) && /showPage\s*=/.test(siteJs));
   check('Shared scripts contain no network calls', !/(?:\bfetch\s*\(|XMLHttpRequest|sendBeacon)/.test(`${siteJs}\n${safetyJs}`));
   check(
-    'Browser storage is limited to the supply-list dismissal preference',
+    'Browser storage is limited to the Jumu’ah Bites dismissal preference',
     !/sessionStorage/.test(`${siteJs}\n${safetyJs}`)
       && occurrences(siteJs, 'localStorage.') === 2
-      && siteJs.includes('oia-supply-list-dismissed-2026-27')
+      && siteJs.includes('oia-jumua-bites-dismissed-v1')
       && !/localStorage/.test(safetyJs),
   );
   const activeRouteProblems = redesignPages.map(routeFor).filter((route) => !siteJs.includes(JSON.stringify(route)));
@@ -376,7 +396,8 @@ function run() {
       if (!reference.value) continue;
       const result = localTarget(reference.value, relative);
       if (result?.external) {
-        if (reference.kind === 'runtime') brokenReferences.push(`${route} external runtime ${reference.value}`);
+        const approvedChart = relative === 'life-at-oia/index.html' && JSON.parse(read('content/family-updates.json')).events.some((event) => event.scoreboardUrl === reference.value);
+        if (reference.kind === 'runtime' && !approvedChart) brokenReferences.push(`${route} external runtime ${reference.value}`);
       } else if (result?.error) {
         brokenReferences.push(`${route} ${result.error}: ${reference.value}`);
       } else if (result?.target && !existsSync(result.target)) {
@@ -420,7 +441,7 @@ function run() {
     /class=["'][^"']*oia-news-board[^"']*["']/.test(newsletterHtml)
       && /School News &amp; Alerts/.test(newsletterHtml)
       && /2026–2027 School Year/.test(newsletterHtml)
-      && occurrences(newsletterHtml, 'https://www.canva.com/design/') === 3,
+      && occurrences(newsletterHtml, '<li><h3><a href=') === JSON.parse(read('content/family-updates.json')).newsletters.length,
   );
   check(
     'Newsletter route contains no signup, search, comments, or forms',
@@ -434,16 +455,19 @@ function run() {
       && !/handbook will appear here/i.test(studentLifeHtml),
   );
   check(
-    'Shared supply-list notice links locally and keeps the dismissal preference',
-    siteJs.includes(SUPPLY_LIST_ROUTE)
+    'Shared Jumu’ah Bites notice links locally and explains the deadline',
+    siteJs.includes('/jumah-bites-2/')
       && siteJs.includes('oia-supply-notice')
+      && siteJs.includes('before the first Friday of the month')
+      && !siteJs.includes('School Supply List')
       && siteJs.includes('localStorage.setItem'),
   );
   const handbookHtml = read('student-handbook/index.html');
   const supplyListHtml = read('school-supply-list/index.html');
   check('Local handbook contains the supplied school policies', /INTRODUCTORY STATEMENT/.test(handbookHtml) && /TECHNOLOGY, DIGITAL SAFETY, AND ARTIFICIAL INTELLIGENCE/.test(handbookHtml) && /HEALTH AND SAFETY/.test(handbookHtml));
   check('Local supply list contains the current grade-group supplies', /2026–2027 School Supply List/.test(supplyListHtml) && /All Students/.test(supplyListHtml) && /Grades 1–5/.test(supplyListHtml));
-  check('Only Student Life links Google Docs', !redesignPages.some((relative) => relative !== 'student-life/index.html' && /docs\.google\.com\/document/i.test(read(relative))));
+  const eventCalendarUrl = JSON.parse(read('content/family-updates.json')).eventCalendarUrl;
+  check('Google Docs links are limited to the supplied handbook and Event Calendar', redesignPages.every((relative) => anchors(read(relative)).filter(({href}) => /docs\.google\.com\/document/i.test(href)).every(({href}) => (relative === 'student-life/index.html' && href === STUDENT_HANDBOOK_URL) || (['2026-2027-calendar/index.html', 'student-life/index.html'].includes(relative) && href === eventCalendarUrl))));
   const uniformHtml = read('uniform/index.html');
   check(
     'Uniform page displays only the supplied visual guide',
