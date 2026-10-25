@@ -20,7 +20,7 @@
     ...[
       "/student-life/", "/calendar/", "/2025-26-calendar/", "/2026-2027-calendar/",
       "/faq/", "/gallery/", "/newsletter/", "/jumah-bites-2/", "/login/",
-      "/my-account-2/", "/lost-password/", "/student-handbook/", "/school-supply-list/",
+      "/my-account-2/", "/lost-password/", "/student-handbook/", "/school-supply-list/", "/life-at-oia/", "/jumua-volunteer/",
     ].map((route) => [route, "/student-life/"]),
     ...["/donations/", "/membership-pricing/"].map((route) => [route, "/donations/"]),
   ]);
@@ -36,7 +36,7 @@
     link.rel = "noreferrer";
   });
 
-  const supplyNoticeKey = "oia-supply-list-dismissed-2026-27";
+  const supplyNoticeKey = "oia-jumua-bites-dismissed-v1";
   let supplyNoticeDismissed = false;
   try {
     supplyNoticeDismissed = localStorage.getItem(supplyNoticeKey) === "true";
@@ -48,12 +48,10 @@
     notice.setAttribute("aria-live", "polite");
     notice.setAttribute("aria-labelledby", "oia-supply-notice-title");
     notice.innerHTML = `
-      <button class="oia-supply-notice-close" type="button" aria-label="Dismiss school supply list notice">×</button>
-      <span class="oia-supply-notice-mark" aria-hidden="true">✎</span>
-      <p class="oia-supply-notice-kicker">Current Families · 2026–2027</p>
-      <h2 id="oia-supply-notice-title">School Supply List</h2>
-      <p>Prepare for the school year with OIA’s current classroom supply list.</p>
-      <a class="oia-supply-notice-link" href="/school-supply-list/">View Supply List <span aria-hidden="true">→</span></a>`;
+      <button class="oia-supply-notice-close" type="button" aria-label="Dismiss Jumu’ah Bites notice">×</button>
+      <h2 id="oia-supply-notice-title">Jumu’ah Bites</h2>
+      <p>Order by <strong>Wednesday at 9 a.m.</strong> before the first Friday of the month.</p>
+      <a class="oia-supply-notice-link" href="/jumah-bites-2/">Order lunch</a>`;
     document.body.append(notice);
     setTimeout(() => notice.classList.add("oia-is-visible"), 350);
     notice.querySelector(".oia-supply-notice-close").addEventListener("click", () => {

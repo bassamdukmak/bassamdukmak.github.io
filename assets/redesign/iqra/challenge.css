@@ -1,0 +1,177 @@
+@font-face { font-family: 'Iqra Handwriting'; src: url('./caveat.ttf') format('truetype'); font-weight: 500; font-display: swap; }
+.iqra-reference-view {
+  --iqra-teal: #075761;
+  --iqra-aqua: #39b6ca;
+  --iqra-green: #8eb96a;
+  width: min(calc(100% - 24px), 1260px);
+  max-width: none;
+  max-height: calc(100% - 24px);
+  padding: 0;
+  border-radius: 12px;
+  color: #24464b;
+  background: #fff;
+  font-family: var(--oia-body);
+}
+.iqra-reference-view * { box-sizing: border-box; }
+.iqra-reference-view .iqra-close { position: sticky; top: 9px; float: right; z-index: 5; width: 30px; height: 30px; margin: 9px 9px -39px 0; padding: 0; border: 0; border-radius: 50%; background: #e6f4f4; color: #075761 !important; font: 22px/1 Arial !important; cursor: pointer; }
+.iqra-reference-view .iqra-topbar { display: flex; align-items: center; gap: 18px; min-height: 86px; padding: 12px 44px 12px 34px; margin: 0; border-bottom: 1px solid #e7f0f1; background: #fff; }
+.iqra-brand { display: flex; align-items: center; gap: 10px; flex-shrink: 0; color: var(--iqra-teal); text-decoration: none; }
+.iqra-brand img { width: 49px; height: 60px; object-fit: contain; }
+.iqra-brand span { font: 700 16px/1.12 Georgia, serif; }
+.iqra-nav { display: flex; justify-content: center; align-items: center; gap: clamp(12px, 1.4vw, 21px); flex: 1; }
+.iqra-nav a { color: var(--iqra-teal); font-size: 10px; font-weight: 700; text-decoration: none; white-space: nowrap; }
+.iqra-enroll { min-width: 84px; padding: 10px 17px; border-radius: 30px; background: var(--iqra-teal); color: white !important; text-align: center; text-decoration: none; font-size: 13px; }
+.iqra-mobile-menu { display: none; }
+.iqra-hero { position: relative; display: grid; grid-template-columns: 57% 43%; min-height: 350px; background: #f2f9fa; overflow: hidden; }
+.iqra-hero-copy { position: relative; z-index: 2; padding: 36px 0 26px 42px; }
+.iqra-month { display: inline-block; padding: 7px 18px; border-radius: 25px; background: #b8eaf2; color: #1f7180; font-size: 13px; font-weight: 700; }
+body.oia-redesign .iqra-reference-view .iqra-hero h1 { margin: 13px 0 0; color: var(--iqra-teal) !important; font: 700 clamp(33px, 4vw, 53px)/1.08 Georgia, serif !important; letter-spacing: -0.025em; }
+.iqra-reference-view .iqra-motto { margin: 6px 0 22px; color: #48b5c9 !important; font: 500 43px/1.2 'Iqra Handwriting', cursive !important; }
+.iqra-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 15px 23px; font-size: 12px; font-weight: 700; }
+.iqra-meta span { display: flex; gap: 10px; align-items: center; }
+.iqra-meta .iqra-icon { width: 25px; height: 25px; }
+.iqra-hero-photo { width: 100%; height: 100% !important; position: absolute; top: 0; right: 0; width: 43%; object-fit: cover; object-position: 50% 55%; -webkit-mask-image: linear-gradient(to right, transparent, black 20%); mask-image: linear-gradient(to right, transparent, black 20%); }
+.iqra-arch { position: absolute; left: 50%; top: -15px; width: 200px; height: 180px; z-index: 1; }
+.iqra-actions { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: -9px 30px 27px; }
+.iqra-action { display: flex; align-items: center; gap: 15px; min-height: 89px; padding: 16px 18px; border-radius: 13px; color: var(--iqra-teal); background: #e0f7fb; text-decoration: none; }
+.iqra-action > .iqra-icon { width: 43px; height: 43px; flex-shrink: 0; }
+.iqra-action span { font-family: Georgia, serif; font-weight: 700; font-size: 19px; line-height: 1.18; }
+.iqra-action b { display: grid; place-items: center; width: 31px; height: 31px; margin-left: auto; flex-shrink: 0; border-radius: 50%; color: #fff; background: var(--iqra-aqua); font-size: 24px; font-weight: 400; }
+.iqra-action-green { background: #e6f1d8; }
+.iqra-action-green b { background: #83b65d; }
+.iqra-content-grid { display: grid; grid-template-columns: minmax(0, 1.85fr) minmax(0, 1fr); gap: 20px; padding: 0 30px 24px; }
+body.oia-redesign .iqra-reference-view .iqra-content-grid h2 { margin: 0 0 12px; color: var(--iqra-teal) !important; font: 700 25px/1.18 Georgia, serif !important; letter-spacing: -0.015em; display: flex; align-items: center; gap: 10px; }
+.iqra-reference-view p { font-size: 13px; line-height: 1.6; margin: 0; color: #335159; }
+.iqra-purpose { padding: 12px 0 0; }
+.iqra-purpose p { font-size: 15px; max-width: 72ch; line-height: 1.55; }
+.iqra-purpose h2::after { display: none; }
+.iqra-purpose p::before { content: ''; display: block; width: 40px; height: 3px; background: #6fc5d0; margin: 0 0 12px; }
+.iqra-quote { position: relative; padding: 18px 12px 10px; border-radius: 15px; background: #f5fbfb; text-align: center; overflow: hidden; }
+.iqra-quote > .iqra-icon { width: 30px; height: 30px; color: #91b765; position: relative; z-index: 1; }
+.iqra-quote blockquote { position: relative; z-index: 1; margin: 8px 0; padding: 0; border: 0; color: var(--iqra-teal); font-size: 16px; font-weight: 600; line-height: 1.5; }
+body.oia-redesign .iqra-reference-view .iqra-quote blockquote { padding: 0 !important; margin: 8px 0 !important; background: transparent !important; border: 0 !important; box-shadow: none !important; max-width: none; min-height: 0; font: 600 16px/1.5 var(--oia-body) !important; }
+.iqra-quote p { position: relative; z-index: 1; font-size: 12px; }
+.iqra-quote > svg:last-child { position: absolute; right: -20px; top: -25px; width: 120px; height: 180px; }
+.iqra-how { padding: 18px 17px 16px; background: #f0f9f5; border-radius: 15px; scroll-margin-top: 16px; }
+.iqra-how h2 > .iqra-icon { width: 31px; height: 31px; color: #90b962; }
+.iqra-facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; text-align: center; }
+.iqra-facts > div { padding: 7px 8px; min-width: 0; }
+.iqra-facts > div + div { border-left: 1px solid #cde8e9; }
+.iqra-facts > div > .iqra-icon { width: 47px; height: 47px; padding: 8px; color: #1a7b90; border: 1px solid #b9e7ec; border-radius: 50%; background: #e2f7fb; }
+body.oia-redesign .iqra-reference-view .iqra-facts h3 { margin: 10px 0 4px; color: var(--iqra-teal) !important; font: 700 12px/1.35 var(--oia-body) !important; }
+.iqra-facts p { font-size: 10px; line-height: 1.4; }
+.iqra-live { padding: 17px 15px 12px; border-radius: 15px; background: white; box-shadow: 0 4px 20px rgba(18, 95, 99, 0.07); scroll-margin-top: 16px; text-align: center; }
+.iqra-live h2 { font-size: 22px !important; }
+.iqra-live h2 > .iqra-icon { width: 27px; height: 27px; fill: #158da3; }
+.iqra-chart-window { position: relative; width: 100%; min-height: 120px; overflow: hidden; }
+.iqra-chart-window iframe { position: absolute; inset: 0; width: 704px; height: 436px; border: 0; transform: scale(var(--iqra-chart-scale, 1)); transform-origin: left top; }
+.iqra-full-score { display: inline-block; margin-top: 8px; padding: 7px 16px; border: 1px solid #afe3e9; border-radius: 25px; color: var(--iqra-teal); font-weight: 700; font-size: 11px; text-decoration: none; }
+.iqra-rewards { grid-column: 1 / -1; display: grid; grid-template-columns: 1.12fr 1fr 1.45fr; align-items: center; gap: 16px; padding: 19px 18px; border-radius: 15px; background: #f0f6e7; }
+.iqra-rewards h2 { margin: 0 !important; font-size: 23px !important; }
+.iqra-rewards h2 > svg { width: 36px; height: 36px; flex-shrink: 0; color: #97b64e; fill: #e7efd0; }
+.iqra-rewards > div { display: flex; gap: 12px; align-items: center; min-width: 0; }
+.iqra-rewards > div:last-child { border-left: 1px solid #cdddba; padding-left: 16px; }
+.iqra-rewards p { font-size: 11px; line-height: 1.4; }
+.iqra-cup { width: 36px; height: 42px; flex-shrink: 0; color: #0f4f4a; fill: #dcedc6; }
+.iqra-pizza { width: 41px; height: 44px; flex-shrink: 0; color: #0f4f4a; fill: #d9f2f6; }
+.iqra-entry-notes { margin: 0 30px 26px; padding-top: 15px; border-top: 1px solid #e3eef0; color: #335159; font-size: 12px; }
+.iqra-entry-notes summary { min-height: 34px; cursor: pointer; font-weight: 700; }
+.iqra-entry-notes > div { padding-top: 12px; }
+.iqra-entry-notes ul { padding-left: 18px; }
+.iqra-reference-view :is(a,button,summary):focus-visible { outline: 3px solid #1b8a9d; outline-offset: 3px; }
+@media (max-width: 1050px) and (min-width: 701px) {
+  .iqra-nav { gap: 9px; }
+  .iqra-nav a { font-size: 9px; }
+  .iqra-brand span { font-size: 13px; }
+  .iqra-topbar { padding-left: 22px !important; gap: 10px !important; }
+  .iqra-action { gap: 10px; padding-inline: 13px; }
+  .iqra-action span { font-size: 16px; }
+  .iqra-action > .iqra-icon { width: 35px; }
+}
+@media (max-width: 700px) {
+  .iqra-reference-view { width: calc(100% - 16px); max-height: calc(100% - 20px); border-radius: 15px; }
+  .iqra-reference-view .iqra-topbar { min-height: 76px; padding: 10px 46px 10px 19px; }
+  .iqra-brand img { width: 37px; height: 45px; }
+  .iqra-brand span { font-size: 13px; }
+  .iqra-nav,.iqra-enroll { display: none; }
+  .iqra-mobile-menu { display: block; margin-left: auto; }
+  .iqra-mobile-menu summary { display: block; cursor: pointer; }
+  .iqra-mobile-menu summary svg { width: 25px; height: 25px; }
+  .iqra-mobile-menu nav { position: absolute; right: 18px; z-index: 5; display: grid; gap: 13px; width: 180px; padding: 18px; background: white; box-shadow: 0 6px 22px rgba(7, 87, 97, .15); }
+  .iqra-mobile-menu nav a { color: var(--iqra-teal); font-size: 12px; }
+  .iqra-hero { display: flex; flex-direction: column; min-height: 0; overflow: visible; }
+  .iqra-hero-photo { position: static; order: 0; width: 100%; height: 420px !important; object-position: 50% 55%; -webkit-mask-image: none; mask-image: none; }
+  .iqra-hero-copy { order: 1; padding: 22px 22px 20px; margin-top: -33px; background: #f5fafb; border-radius: 58px 58px 0 0; }
+  .iqra-arch { display: none; }
+  .iqra-month { padding: 5px 12px; font-size: 10px; }
+  body.oia-redesign .iqra-reference-view .iqra-hero h1 { font-size: clamp(24px, 7.4vw, 32px) !important; line-height: 1.08 !important; margin-top: 10px; }
+  .iqra-reference-view .iqra-motto { font-size: 29px !important; margin-bottom: 14px; }
+  .iqra-meta { gap: 10px; font-size: 9px; }
+  .iqra-meta span { gap: 6px; }
+  .iqra-meta .iqra-icon { width: 19px; height: 19px; }
+  .iqra-actions { grid-template-columns: 1fr; gap: 9px; margin: 0 17px 22px; }
+  .iqra-action { min-height: 65px; gap: 14px; padding: 12px 14px; }
+  .iqra-action span { font: 700 13px/1.3 var(--oia-body); }
+  .iqra-action span br { display: none; }
+  .iqra-action span br::after { content: ' '; }
+  .iqra-action > .iqra-icon { width: 31px; height: 31px; }
+  .iqra-action b { width: 24px; height: 24px; font-size: 20px; }
+  .iqra-content-grid { grid-template-columns: 1fr; gap: 18px; padding: 0 17px 20px; }
+  body.oia-redesign .iqra-reference-view .iqra-content-grid h2 { font-size: 23px !important; }
+  .iqra-purpose p { font-size: 12px; }
+  .iqra-quote { display: none; }
+  .iqra-live { grid-row: 2; }
+  .iqra-how { grid-row: 4; }
+  .iqra-rewards { grid-row: 3; grid-template-columns: 1fr 1fr; gap: 14px; padding: 16px 13px; }
+  .iqra-rewards h2 { grid-column: 1/-1; }
+  .iqra-rewards > div:last-child { padding-left: 9px; }
+  .iqra-rewards p { font-size: 10px; }
+  .iqra-rewards > div { align-items: flex-start; gap: 6px; }
+  .iqra-rewards .iqra-icon { width: 28px; height: 35px; }
+  .iqra-facts { grid-template-columns: 1fr 1fr; gap: 14px 0; }
+  .iqra-facts > div:nth-child(3) { border-left: 0; }
+  .iqra-entry-notes { margin-inline: 17px; }
+}
+
+/* Regular full-width Reading Challenge page; shared school navigation stays centered. */
+body.iqra-page { background: #fff !important; background-image: none !important; }
+body.iqra-page #main-content.iqra-reference-view { width: 100%; max-width: none; max-height: none; min-height: 100vh; padding: 0; margin: 0; overflow: visible; border: 0; border-radius: 0; background: #fff; }
+.iqra-page .iqra-hero { min-height: 400px; }
+.iqra-page .iqra-hero-copy { padding-left: max(32px, calc((100vw - 1260px) / 2 + 32px)); }
+.iqra-page .iqra-actions { width: min(100% - 64px, 1196px); margin: -9px auto 30px; align-items: stretch; }
+.iqra-page .iqra-action { display: grid; grid-template-columns: 43px minmax(0,1fr) 34px; align-items: center; min-height: 104px; height: 100%; gap: 16px; padding: 18px; }
+.iqra-page .iqra-action b { display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; margin: 0; padding: 0; line-height: 1; }
+.iqra-page .iqra-action b svg { display: block; width: 20px; height: 20px; flex-shrink: 0; }
+.iqra-page .iqra-content-grid { width: min(100% - 64px, 1196px); margin: 0 auto; padding: 0 0 28px; }
+.iqra-page .iqra-entry-notes { width: min(100% - 64px, 1196px); margin: 0 auto 30px; }
+@media(max-width:700px) {
+ .iqra-page .iqra-hero { min-height: 0; }
+ .iqra-page .iqra-hero-copy { padding-left: 22px; }
+ .iqra-page .iqra-actions, .iqra-page .iqra-content-grid, .iqra-page .iqra-entry-notes { width: calc(100% - 34px); }
+ .iqra-page .iqra-action { grid-template-columns: 31px minmax(0,1fr) 28px; min-height: 72px; padding: 12px 14px; }
+ .iqra-page .iqra-action b { width: 28px; height: 28px; }
+ .iqra-page .iqra-action b svg { width: 17px; height: 17px; }
+}
+body.iqra-page::before { display: none !important; content: none !important; }
+.iqra-page #iqra-how, .iqra-page #iqra-live { scroll-margin-top: 150px; }
+@media(max-width:700px) { .iqra-page #iqra-how, .iqra-page #iqra-live { scroll-margin-top: 210px; } }
+/* Use the full browser canvas on wide desktop displays as well as laptops. */
+.iqra-page .iqra-actions, .iqra-page .iqra-content-grid, .iqra-page .iqra-entry-notes { width: calc(100% - 64px); max-width: none; }
+.iqra-page .iqra-hero { min-height: clamp(400px, 28vw, 640px); }
+.iqra-page .iqra-hero-copy { padding-left: 32px; }
+body.iqra-page .iqra-reference-view .iqra-hero h1 { font-size: clamp(44px, 4vw, 82px) !important; }
+.iqra-page .iqra-motto { font-size: clamp(43px, 3vw, 64px) !important; }
+.iqra-page .iqra-meta { font-size: clamp(12px, 1.1vw, 18px); }
+.iqra-page .iqra-purpose p { font-size: clamp(15px, 1.1vw, 22px); }
+@media(max-width:700px) {
+ .iqra-page .iqra-hero { min-height: 0; }
+ .iqra-page .iqra-hero-copy { padding-left: 22px; }
+ .iqra-page .iqra-actions, .iqra-page .iqra-content-grid, .iqra-page .iqra-entry-notes { width: calc(100% - 34px); }
+ body.iqra-page .iqra-reference-view .iqra-hero h1 { font-size: clamp(24px, 7.4vw, 32px) !important; }
+ .iqra-page .iqra-motto { font-size: 29px !important; }
+ .iqra-page .iqra-meta { font-size: 9px; }
+ .iqra-page .iqra-purpose p { font-size: 12px; }
+}
+.iqra-page .iqra-action span { font-size: clamp(19px, 1.05vw, 27px); }
+@media(min-width:701px) and (max-width:1050px) { .iqra-page .iqra-action span { font-size: 16px; } }
+@media(max-width:700px) { .iqra-page .iqra-action span { font-size: 13px; } }
