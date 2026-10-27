@@ -150,31 +150,21 @@ body.oia-redesign[data-oia-template]:not([data-oia-template="home"]):not([data-o
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  padding: clamp(4.5rem, 9vw, 8rem) 0 !important;
+  padding: clamp(32px, 4vw, 56px) 0 !important;
   color: var(--oia-white);
-  background:
-    linear-gradient(112deg, rgba(15, 79, 74, 0.99) 0 58%, rgba(15, 79, 74, 0.88)),
-    var(--oia-green) !important;
+  background: var(--oia-green) !important;
 }
 
 body.oia-redesign[data-oia-template]:not([data-oia-template="home"]):not([data-oia-template="student-life"]):not([data-oia-template="legacy"])
   #main-content .et-l--post > .et_builder_inner_content > .et_pb_section:first-child::before {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background-image:
-    linear-gradient(30deg, transparent 48%, rgba(255, 255, 255, 0.07) 49% 51%, transparent 52%),
-    linear-gradient(150deg, transparent 48%, rgba(81, 191, 206, 0.1) 49% 51%, transparent 52%);
-  background-size: 54px 94px;
-  content: "";
-  mask-image: linear-gradient(to right, transparent 10%, #000 72%);
+  content: none;
 }
 
 body.oia-redesign[data-oia-template]:not([data-oia-template="home"]):not([data-oia-template="student-life"]):not([data-oia-template="legacy"])
   #main-content .et-l--post > .et_builder_inner_content > .et_pb_section:first-child .et_pb_row:first-child {
   display: grid !important;
-  grid-template-columns: minmax(0, 1.08fr) minmax(17rem, 0.92fr);
-  gap: clamp(2.5rem, 7vw, 7rem);
+  grid-template-columns: minmax(0, 1.2fr) minmax(17rem, 0.8fr);
+  gap: clamp(24px, 4vw, 48px);
   align-items: center;
 }
 
@@ -218,7 +208,8 @@ body.oia-redesign[data-oia-template]:not([data-oia-template="home"]):not([data-o
   #main-content .et-l--post > .et_builder_inner_content > .et_pb_section:first-child .et_pb_image_wrap img {
   display: block;
   width: 100%;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 4 / 3;
+  max-height: 300px;
   object-fit: cover;
 }
 
@@ -2155,10 +2146,12 @@ body.oia-redesign[data-oia-template="utility"] #main-content > .container {
 }
 
 body.oia-redesign[data-oia-template="utility"] #content-area {
-  display: grid;
-  grid-template-columns: minmax(0, 1.8fr) minmax(15rem, 0.7fr);
-  gap: clamp(1.5rem, 4vw, 3rem);
+  display: block;
+  max-width: 52rem;
+  margin-inline: auto;
 }
+body.oia-redesign[data-oia-template="utility"] #sidebar { display: none !important; }
+
 
 body.oia-redesign[data-oia-template="utility"] #left-area,
 body.oia-redesign[data-oia-template="utility"] #sidebar {
@@ -2791,4 +2784,58 @@ body.oia-redesign[data-oia-template="legacy"] .oia-legacy-content input:not([typ
   body.oia-redesign[data-oia-template] :is(.et_pb_button, button, .oia-demo-notice) {
     display: none !important;
   }
+}
+
+/* Local review: concise page introductions and direct tour invitations. */
+body.oia-redesign[data-oia-template]:not([data-oia-template="home"]):not([data-oia-template="student-life"]):not([data-oia-template="legacy"])
+ #main-content .et-l--post > .et_builder_inner_content > .et_pb_section:first-child h1 {
+  max-width: 28ch;
+  font-size: clamp(30px, 3.5vw, 48px) !important;
+  line-height: 1.15 !important;
+}
+.oia-page-tour {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  align-items: start;
+  gap: 32px;
+  padding: 32px;
+  border-radius: 12px;
+  background: var(--oia-green);
+}
+body.oia-redesign #main-content .oia-page-tour :is(h2,p) { color: var(--oia-white) !important; }
+body.oia-redesign #main-content .oia-page-tour h2 { margin: 0; font-size: clamp(26px,3vw,34px) !important; line-height: 1.2; }
+body.oia-redesign #main-content .oia-page-tour p { margin: 0 0 20px; font-size: 15px; line-height: 1.7; }
+body.oia-redesign[data-oia-template] #main-content .et_pb_row:has(.oia-page-tour) { padding: 0 !important; border: 0; background: transparent; box-shadow: none; }
+body.oia-redesign #main-content .oia-page-tour a { display: inline-flex; align-items: center; min-height: 44px; padding: 10px 18px; border-radius: 6px; background: #fff; color: var(--oia-green) !important; font-size: 14px; font-weight: 600; text-decoration: none; }
+.oia-page-tour a:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+body.oia-redesign[data-oia-template="utility"] #left-area { box-shadow: none; }
+@media (max-width: 760px) {
+ body.oia-redesign[data-oia-template]:not([data-oia-template="home"]):not([data-oia-template="student-life"]):not([data-oia-template="legacy"])
+  #main-content .et-l--post > .et_builder_inner_content > .et_pb_section:first-child { padding: 32px 0 !important; }
+ body.oia-redesign[data-oia-template]:not([data-oia-template="home"]):not([data-oia-template="student-life"]):not([data-oia-template="legacy"])
+  #main-content .et-l--post > .et_builder_inner_content > .et_pb_section:first-child .et_pb_image_wrap img { max-height: 220px; aspect-ratio: 4 / 3; }
+ .oia-page-tour { grid-template-columns: 1fr; gap: 20px; padding: 24px; }
+}
+
+/* Instructions are body copy, not display headlines. */
+body.oia-redesign[data-oia-template] #main-content .oia-form-intro {
+ margin: 0; padding: 0; max-width: 68ch;
+ font-family: var(--oia-body); font-size: 17px !important;
+ font-weight: 400; line-height: 1.65; letter-spacing: 0;
+}
+body.oia-redesign[data-oia-template] #main-content .et_pb_row:has(.oia-form-intro):not(:has(form)) {
+ background: transparent; border: 0; box-shadow: none; padding: 0 !important;
+}
+/* Keep the form's own panel; remove its duplicate outer frame. */
+body.oia-redesign[data-oia-template] #main-content#main-content .et_pb_row:has(.wpforms-container),
+body.oia-redesign[data-oia-template] #main-content#main-content .et_pb_row:has(.oia-form-intro):not(:has(form)) {
+ padding: 0 !important; background: transparent; border: 0; box-shadow: none;
+}
+/* Imported headings keep their accessible level and should use that visual size. */
+body.oia-redesign[data-oia-template]:not([data-oia-template="home"]) #main-content [data-oia-heading-level][aria-level="2"] {
+ font-size: clamp(26px, 3vw, 36px) !important; line-height: 1.2 !important;
+}
+body.oia-redesign[data-oia-template]:not([data-oia-template="home"]) #main-content [data-oia-heading-level][aria-level="3"],
+body.oia-redesign[data-oia-template]:not([data-oia-template="home"]) #main-content [data-oia-heading-level][aria-level="4"] {
+ font-size: clamp(20px, 2vw, 26px) !important; line-height: 1.3 !important;
 }

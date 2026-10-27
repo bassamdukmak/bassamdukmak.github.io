@@ -609,13 +609,6 @@ body.oia-redesign .oia-supply-notice-close:hover {
   outline-offset: 3px !important;
 }
 
-.oia-reveal {
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 480ms ease, transform 480ms ease;
-}
-.oia-reveal.oia-visible { opacity: 1; transform: none; }
-
 .oia-lightbox {
   width: min(94vw, 1100px);
   max-width: none;
@@ -805,7 +798,6 @@ body.oia-redesign .oia-site-footer .oia-footer-base a { color: var(--oia-white) 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
-  .oia-reveal { opacity: 1; transform: none; }
   .oia-supply-notice { transition: none; }
 }
 
